@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const router = require("./routes/routes");
 const mongoose = require("mongoose");
@@ -13,7 +14,7 @@ server.use(express.json());
 server.set('view engine', 'ejs');
 
 // DB connection
-const dbUIRI = 'mongodb+srv://gorm:Fazbear555@cluster0.gzcovb3.mongodb.net/TemplateProject?retryWrites=true&w=majority';
+const dbUIRI = process.env.mongoURI;
 mongoose.connect(dbUIRI, { useNewUrlParser: true, useUnifiedTopology: true})
     .then ((result) => server.listen(80))
     .catch((err) => console.log(err));
